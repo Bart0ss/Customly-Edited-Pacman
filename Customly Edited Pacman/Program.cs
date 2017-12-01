@@ -1,6 +1,6 @@
 ﻿using System;
 using static Customly_Edited_Pacman.Map;
-
+using static Customly_Edited_Pacman.Game;
 namespace Customly_Edited_Pacman
 {
     class Program
@@ -25,6 +25,8 @@ namespace Customly_Edited_Pacman
                 {
                     Console.WriteLine(player.getScore());
                     Console.WriteLine(max_points_on_current_maze);
+
+                    ShowWarnings();
                     ShowMap(arr);
                     var key = Console.ReadKey().Key;
 

@@ -1,5 +1,8 @@
 ﻿using System;
 using static Customly_Edited_Pacman.Program;
+using static Customly_Edited_Pacman.Game;
+using System.Linq;
+
 namespace Customly_Edited_Pacman
 {
     class Movement
@@ -47,14 +50,25 @@ namespace Customly_Edited_Pacman
                 case ConsoleKey.NumPad5:
                     return false;
                 default:
-                    Console.WriteLine(@"Use < ^ > \/ arrows");
+                    bool contains = false;
+                    foreach (var c in warnings)
+                    {
+                        if (c.Contains($@"Use < ^ > \/ arrows"))
+                        {
+                            contains = true;
+                        }
+                    }
+                    if (!contains)
+                    {
+                        warnings.Add(@"Use < ^ > \/ arrows");
+                    }
                     break;
             }
-            if (arr[new_x, new_y]=="O")
+            if (arr[new_x, new_y]==sign_point)
             {
                 max_points_on_current_maze--;
             }
-            if (arr[new_x, new_y] != "X")
+            if (!signs.Contains(arr[new_x, new_y]))
             {
                 arr[currentX, currentY] = " ";
                 arr[new_x, new_y] = "C";

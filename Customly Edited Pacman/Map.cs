@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Customly_Edited_Pacman
 {
@@ -17,7 +15,7 @@ namespace Customly_Edited_Pacman
             {
                 for (int j=0; j<width; j++)
                 {
-                    if (arr[i,j] == "O")
+                    if (arr[i,j] == Game.sign_point)
                     {
                         count++;
                     }
@@ -32,7 +30,7 @@ namespace Customly_Edited_Pacman
             {
                 for (int j = 0; j < width; j++)
                 {
-                    arr[i, j] = "O";
+                    arr[i, j] = Game.sign_point;
                 }
             }
             return arr;
@@ -77,7 +75,7 @@ namespace Customly_Edited_Pacman
                 {
                     if (x + x_coords[i] > 0 && x + x_coords[i] < height && y + y_coords[i] >0 && y + y_coords[i] < width)
                     {
-                        if (arr[x + x_coords[i], y + y_coords[i]] == "O")
+                        if (arr[x + x_coords[i], y + y_coords[i]] == Game.sign_point)
                         {
                             amountOfExits++;
                         }
@@ -112,16 +110,16 @@ namespace Customly_Edited_Pacman
                             int temp = rnd.Next(3);
                             if (temp == 2)
                             {
-                                arr[i, j] = "X";
+                                arr[i, j] = Game.sign_blocked_way;
                             }
                             else
                             {
-                                arr[i, j] = "O";
+                                arr[i, j] = Game.sign_point;
                             }
                         }
                         else
                         {
-                            arr[i, j] = "O";
+                            arr[i, j] = Game.sign_point;
                         }
                     }
                 }
@@ -135,10 +133,16 @@ namespace Customly_Edited_Pacman
             {
                 for (int j = 0; j < arr.GetLength(1); j++)
                 {
-                    if (arr[i, j] == "X")
+                    if (Game.signs.Contains(arr[i, j]))
                     {
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.Write(arr[i, j] + " ");
+                    }
+                    else if (arr[i,j]=="C")
+                    {
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        Console.Write(arr[i, j] + " ");
+
                     }
                     else
                     {
@@ -157,9 +161,42 @@ namespace Customly_Edited_Pacman
             {
                 for (int j = 0; j < width; j++)
                 {
-                    if (i == 0 || i == height - 1 || j == 0 || j == width - 1)
+                    if (i == 0)
                     {
-                        arr[i, j] = "X";
+                        if (j == 0)
+                        {
+                            arr[i, j] = Game.sign_wall_corner_top_left;
+                        }
+                        else if (j == width - 1)
+                        {
+                            arr[i, j] = Game.sign_wall_corner_top_right;
+                        }
+                        else
+                        {
+                            arr[i, j] = Game.sign_wall_top_n_bottom;
+                        }
+                    }
+                    else if (i == height - 1)
+                    {
+                        if (j == 0)
+                        {
+                            arr[i, j] = Game.sign_wall_corner_bottom_left;
+                        }
+                        else if (j == width - 1)
+                        {
+                            arr[i, j] = Game.sign_wall_corner_bottom_right;
+                        }
+                        else
+                        {
+                            arr[i, j] = Game.sign_wall_top_n_bottom;
+                        }
+                    }
+                    else
+                    {
+                        if (j == 0 || j == width - 1)
+                        {
+                            arr[i, j] = Game.sign_wall_left_n_right;
+                        }
                     }
                 }
             }
