@@ -17,7 +17,7 @@ namespace Customly_Edited_Pacman
 
             while (true)
             {
-                arr = CreateMaze(arr);
+                arr = createMaze(arr);
                 player.setCoords(height / 2, width / 2);
                 bool gameIsOver = false;
                 max_points_on_current_maze = amount_of_points_on_map(arr);
@@ -26,8 +26,8 @@ namespace Customly_Edited_Pacman
                     Console.WriteLine(player.getScore());
                     Console.WriteLine(max_points_on_current_maze);
 
-                    ShowWarnings();
-                    ShowMap(arr);
+                    showWarnings();
+                    showMap(arr);
                     var key = Console.ReadKey().Key;
 
                     if (max_points_on_current_maze == 0 || !Movement.PlayerMovement(key))

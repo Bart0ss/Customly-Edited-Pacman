@@ -31,7 +31,6 @@ namespace Customly_Edited_Pacman
             sign_blocked_way
         };
 
-
         public enum Direction
 
         {
@@ -43,7 +42,7 @@ namespace Customly_Edited_Pacman
 
         public static List<string> warnings = new List<string>();
 
-        public static void ShowWarnings()
+        public static void showWarnings()
         {
             foreach (string warning in warnings)
             {
@@ -58,6 +57,8 @@ namespace Customly_Edited_Pacman
               ConsoleKey.A,               ConsoleKey.D,
               ConsoleKey.Z, ConsoleKey.S, ConsoleKey.C
         };
+
+        // todo
         public static readonly ConsoleKey[] player2Keys =
         {
               ConsoleKey.NumPad7, ConsoleKey.NumPad8, ConsoleKey.NumPad9,

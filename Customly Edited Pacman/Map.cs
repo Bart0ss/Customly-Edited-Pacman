@@ -36,7 +36,7 @@ namespace Customly_Edited_Pacman
             return arr;
         }
 
-        public static bool BlockAintBlocked(int x, int y, string[,] arr)
+        public static bool blockAintBlocked(int x, int y, string[,] arr)
         {
             List<int> x_coords = new List<int>(8);
             List<int> y_coords = new List<int>(8);
@@ -68,7 +68,7 @@ namespace Customly_Edited_Pacman
             int height = arr.GetLength(0);
             int width = arr.GetLength(1);
 
-            int amountOfExits = 0;
+            int amountOfOccurrences = 0;
             for (int i = 0; i < x_coords.Count; i++)
             {
                 try
@@ -77,7 +77,7 @@ namespace Customly_Edited_Pacman
                     {
                         if (arr[x + x_coords[i], y + y_coords[i]] == Game.sign_point)
                         {
-                            amountOfExits++;
+                            amountOfOccurrences++;
                         }
                     }
                 }
@@ -91,9 +91,9 @@ namespace Customly_Edited_Pacman
                     Console.WriteLine("_______________");
                 }
             }
-            return amountOfExits >= 2;
+            return amountOfOccurrences >= 2;
         }
-        public static string[,] CreateMaze(string[,] arr)
+        public static string[,] createMaze(string[,] arr)
         {
             Random rnd = new Random();
             int height = arr.GetLength(0);
@@ -105,7 +105,7 @@ namespace Customly_Edited_Pacman
                 {
                     if (i != 0 && i != height - 1 && j != 0 && j != width - 1)
                     {
-                        if (BlockAintBlocked(i, j, arr))
+                        if (blockAintBlocked(i, j, arr))
                         {
                             int temp = rnd.Next(3);
                             if (temp == 2)
@@ -127,7 +127,7 @@ namespace Customly_Edited_Pacman
             return arr;
         }
 
-        public static void ShowMap(string[,] arr)
+        public static void showMap(string[,] arr)
         {
             for (int i = 0; i < arr.GetLength(0); i++)
             {
