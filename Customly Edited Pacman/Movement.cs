@@ -7,48 +7,99 @@ namespace Customly_Edited_Pacman
 {
     class Movement
     {
-        public static bool PlayerMovement(ConsoleKey key)
+        public static Player WhoUsedKey(ConsoleKey key)
         {
-            int new_x = 0;
-            int new_y = 0;
-            int currentX = player.getCoorsX();
-            int currentY = player.getCoorsY();
+            if (Game.player1Keys.Contains(key))
+            {
+                return Program.player;
+            }
+            else if (Game.player2Keys.Contains(key))
+            {
+                return Program.player2;
+            }
+              return Program.player;
+        }
+
+        public static Direction DetermineDirection(ConsoleKey key)
+        {
             switch (key)
             {
                 case ConsoleKey.UpArrow:
+                case ConsoleKey.W:
+                    return Direction.North;
+
+                case ConsoleKey.DownArrow:
+                case ConsoleKey.S:
+                    return Direction.South;
+
+                case ConsoleKey.LeftArrow:
+                case ConsoleKey.A:
+                    return Direction.West;
+
+                case ConsoleKey.RightArrow:
+                case ConsoleKey.D:
+                    return Direction.East;
+
+                case ConsoleKey.Home:
+                case ConsoleKey.Q:
+                    return Direction.NorthWest;
+
+                case ConsoleKey.PageUp:
+                case ConsoleKey.E:
+                    return Direction.NorthEast;
+
+                case ConsoleKey.End:
+                case ConsoleKey.Z:
+                    return Direction.SouthWest;
+
+                case ConsoleKey.PageDown:
+                case ConsoleKey.C:
+                    return Direction.SouthEast;
+
+                default:
+                    return Direction.North;
+            }
+        }
+        public static bool PlayerMovement(Player playerDTO, Direction direction)
+        {
+            int new_x = 0;
+            int new_y = 0;
+            int currentX = playerDTO.getCoorsX();
+            int currentY = playerDTO.getCoorsY();
+            switch (direction)
+            {
+                case Direction.North:
                     new_x = currentX -1;
                     new_y = currentY;
                     break;
-                case ConsoleKey.DownArrow:
+                case Direction.South:
                     new_x = currentX + 1;
                     new_y = currentY;
                     break;
-                case ConsoleKey.RightArrow:
+                case Direction.East:
                     new_x = currentX;
                     new_y = currentY + 1;
                     break;
-                case ConsoleKey.LeftArrow:
+                case Direction.West:
                     new_x = currentX;
                     new_y = currentY - 1;
                     break;
-                case ConsoleKey.Home:
+                case Direction.NorthWest:
                     new_x = currentX - 1;
                     new_y = currentY - 1;
                     break;
-                case ConsoleKey.PageUp:
+                case Direction.NorthEast:
                     new_x = currentX -1;
                     new_y = currentY +1;
                     break;
-                case ConsoleKey.End:
+                case Direction.SouthWest:
                     new_x = currentX +1;
                     new_y = currentY - 1;
                     break;
-                case ConsoleKey.PageDown:
+                case Direction.SouthEast:
                     new_x = currentX +1;
                     new_y = currentY + 1;
                     break;
-                case ConsoleKey.NumPad5:
-                    return false;
                 default:
                     bool contains = false;
                     foreach (var c in warnings)
@@ -68,11 +119,11 @@ namespace Customly_Edited_Pacman
             {
                 max_points_on_current_maze--;
             }
-            if (!signs.Contains(arr[new_x, new_y]))
+            if (!unable_to_walk_thru_signs.Contains(arr[new_x, new_y]))
             {
                 arr[currentX, currentY] = " ";
-                arr[new_x, new_y] = "C";
-                player.setCoords(new_x, new_y);
+                arr[new_x, new_y] = Game.sign_player;
+                playerDTO.setCoords(new_x, new_y);
             }
             return true;
         }

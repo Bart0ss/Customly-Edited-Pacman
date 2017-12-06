@@ -7,7 +7,9 @@ namespace Customly_Edited_Pacman
     {
         public static string[,] arr;
         public static Player player = new Player(0, 0);
+        public static Player player2 = new Player(0, 0);
         public static int max_points_on_current_maze;
+
         public static void Main(string[] args)
         {
             int height = 10;
@@ -19,18 +21,22 @@ namespace Customly_Edited_Pacman
             {
                 arr = createMaze(arr);
                 player.setCoords(height / 2, width / 2);
+                player2.setCoords((height / 2)+1, width / 2);
                 bool gameIsOver = false;
                 max_points_on_current_maze = amount_of_points_on_map(arr);
                 while (!gameIsOver)
                 {
-                    Console.WriteLine(player.getScore());
+                    Console.WriteLine("Player1: " + player.getScore());
+                    Console.WriteLine("Player2: " + player2.getScore());
                     Console.WriteLine(max_points_on_current_maze);
 
                     showWarnings();
                     showMap(arr);
-                    var key = Console.ReadKey().Key;
 
-                    if (max_points_on_current_maze == 0 || !Movement.PlayerMovement(key))
+                    var key = Console.ReadKey().Key;
+                    Player currentPlayer = Movement.WhoUsedKey(key);
+                    Direction determined = Movement.DetermineDirection(key);
+                    if (max_points_on_current_maze == 0 || !Movement.PlayerMovement(currentPlayer,determined) || key==ConsoleKey.Escape)
                     {
                         gameIsOver = true;
                     }

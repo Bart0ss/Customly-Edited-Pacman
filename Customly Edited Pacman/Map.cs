@@ -133,16 +133,15 @@ namespace Customly_Edited_Pacman
             {
                 for (int j = 0; j < arr.GetLength(1); j++)
                 {
-                    if (Game.signs.Contains(arr[i, j]))
+                    if (Game.unable_to_walk_thru_signs.Contains(arr[i, j]) && arr[i,j] != Game.sign_player)
                     {
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.Write(arr[i, j] + " ");
                     }
-                    else if (arr[i,j]=="C")
+                    else if (arr[i,j]==Game.sign_player)
                     {
                         Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.Write(arr[i, j] + " ");
-
                     }
                     else
                     {
