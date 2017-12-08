@@ -20,14 +20,18 @@ namespace Customly_Edited_Pacman
             while (true)
             {
                 arr = createMaze(arr);
-                player.setCoords(height / 2, width / 2);
-                player2.setCoords((height / 2)+1, width / 2);
+                int initial_x = height / 2;
+                int initial_y = width / 2;
+
+                player.setCoords(initial_x,initial_y);
+                player2.setCoords(initial_x,initial_y);
+                arr[initial_x, initial_y] = " ";
                 bool gameIsOver = false;
                 max_points_on_current_maze = amount_of_points_on_map(arr);
                 while (!gameIsOver)
                 {
-                    Console.WriteLine("Player1: " + player.getScore());
-                    Console.WriteLine("Player2: " + player2.getScore());
+                    Console.WriteLine("Player1's score: " + player.getScore());
+                    Console.WriteLine("Player2's score: " + player2.getScore());
                     Console.WriteLine(max_points_on_current_maze);
 
                     showWarnings();

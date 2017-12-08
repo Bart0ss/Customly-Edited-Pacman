@@ -21,7 +21,7 @@ namespace Customly_Edited_Pacman
                     }
                 }
             }
-            return count-1; // because spawn_place takes one point
+            return count;
         }
         public static string[,] create_2D_array(int height, int width)
         {

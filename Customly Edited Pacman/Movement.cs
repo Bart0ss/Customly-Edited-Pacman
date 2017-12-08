@@ -60,12 +60,12 @@ namespace Customly_Edited_Pacman
                     return Direction.North;
             }
         }
-        public static bool PlayerMovement(Player playerDTO, Direction direction)
+        public static bool PlayerMovement(Player thisPlayer, Direction direction)
         {
             int new_x = 0;
             int new_y = 0;
-            int currentX = playerDTO.getCoorsX();
-            int currentY = playerDTO.getCoorsY();
+            int currentX = thisPlayer.getCoorsX();
+            int currentY = thisPlayer.getCoorsY();
             switch (direction)
             {
                 case Direction.North:
@@ -118,12 +118,13 @@ namespace Customly_Edited_Pacman
             if (arr[new_x, new_y]==sign_point)
             {
                 max_points_on_current_maze--;
+                thisPlayer.increaseScore();
             }
             if (!unable_to_walk_thru_signs.Contains(arr[new_x, new_y]))
             {
                 arr[currentX, currentY] = " ";
                 arr[new_x, new_y] = Game.sign_player;
-                playerDTO.setCoords(new_x, new_y);
+                thisPlayer.setCoords(new_x, new_y);
             }
             return true;
         }

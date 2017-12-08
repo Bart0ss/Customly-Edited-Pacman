@@ -24,6 +24,11 @@ namespace Customly_Edited_Pacman
             return _score;
         }
 
+        public void increaseScore()
+        {
+            _score++;
+        }
+
         public void setScore(int x)
         {
             if (x>= 0)
@@ -48,6 +53,7 @@ namespace Customly_Edited_Pacman
             {
                 _coord_x = x;
                 _coord_y = y;
+                
             }
             else
             {
