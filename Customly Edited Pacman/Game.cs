@@ -8,7 +8,6 @@ namespace Customly_Edited_Pacman
 {
     class Game
     {
-
         // hardcoding is the way to go :>
 
         public static string sign_point = "+";
@@ -34,7 +33,6 @@ namespace Customly_Edited_Pacman
         };
 
         public enum Direction
-
         {
             North,
             South,
