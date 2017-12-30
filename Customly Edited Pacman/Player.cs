@@ -15,7 +15,6 @@ namespace Customly_Edited_Pacman
         public Player(int x, int y)
         {
             _coord_x = x;
-
             _coord_y = y;
         }
 
@@ -53,7 +52,6 @@ namespace Customly_Edited_Pacman
             {
                 _coord_x = x;
                 _coord_y = y;
-                
             }
             else
             {
