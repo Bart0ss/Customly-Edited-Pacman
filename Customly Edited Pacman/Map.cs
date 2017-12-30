@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using static Customly_Edited_Pacman.Core;
 namespace Customly_Edited_Pacman
 {
     class Map
@@ -36,7 +36,7 @@ namespace Customly_Edited_Pacman
             return arr;
         }
 
-        public static bool blockAintBlocked(int x, int y, string[,] arr)
+        public static bool blockAintBlocked(int x, int y)
         {
             List<int> x_coords = new List<int>(8);
             List<int> y_coords = new List<int>(8);
@@ -65,8 +65,8 @@ namespace Customly_Edited_Pacman
             x_coords.Add(-1);
             y_coords.Add(-1);
             #endregion
-            int height = arr.GetLength(0);
-            int width = arr.GetLength(1);
+            int height = Core._Map.GetLength(0);
+            int width = Core._Map.GetLength(1);
 
             int amountOfOccurrences = 0;
             for (int i = 0; i < x_coords.Count; i++)
@@ -75,7 +75,7 @@ namespace Customly_Edited_Pacman
                 {
                     if (x + x_coords[i] > 0 && x + x_coords[i] < height && y + y_coords[i] >0 && y + y_coords[i] < width)
                     {
-                        if (arr[x + x_coords[i], y + y_coords[i]] == Game.sign_point)
+                        if (Core._Map[x + x_coords[i], y + y_coords[i]] == Game.sign_point)
                         {
                             amountOfOccurrences++;
                         }
@@ -105,7 +105,7 @@ namespace Customly_Edited_Pacman
                 {
                     if (i != 0 && i != height - 1 && j != 0 && j != width - 1)
                     {
-                        if (blockAintBlocked(i, j, arr))
+                        if (blockAintBlocked(i, j))
                         {
                             int temp = rnd.Next(3);
                             if (temp == 2)

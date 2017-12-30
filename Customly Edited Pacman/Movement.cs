@@ -1,5 +1,5 @@
 ﻿using System;
-using static Customly_Edited_Pacman.Program;
+using static Customly_Edited_Pacman.Core;
 using static Customly_Edited_Pacman.Game;
 using System.Linq;
 
@@ -11,13 +11,13 @@ namespace Customly_Edited_Pacman
         {
             if (Game.player1Keys.Contains(key))
             {
-                return Program.player;
+                return Core.player;
             }
             else if (Game.player2Keys.Contains(key))
             {
-                return Program.player2;
+                return Core.player2;
             }
-              return Program.player;
+              return Core.player;
         }
 
         public static Direction DetermineDirection(ConsoleKey key)
@@ -57,7 +57,7 @@ namespace Customly_Edited_Pacman
                     return Direction.SouthEast;
 
                 default:
-                    return Direction.North;
+                    return Direction.None;
             }
         }
         public static bool PlayerMovement(Player thisPlayer, Direction direction)
@@ -115,15 +115,15 @@ namespace Customly_Edited_Pacman
                     }
                     break;
             }
-            if (arr[new_x, new_y]==sign_point)
+            if (Core._Map[new_x, new_y]== sign_point)
             {
                 max_points_on_current_maze--;
                 thisPlayer.increaseScore();
             }
-            if (!unable_to_walk_thru_signs.Contains(arr[new_x, new_y]))
+            if (!unable_to_walk_thru_signs.Contains(Core._Map[new_x, new_y]))
             {
-                arr[currentX, currentY] = " ";
-                arr[new_x, new_y] = Game.sign_player;
+                Core._Map[currentX, currentY] = " ";
+                Core._Map[new_x, new_y] = Game.sign_player;
                 thisPlayer.setCoords(new_x, new_y);
             }
             return true;
